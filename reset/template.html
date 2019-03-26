@@ -1,0 +1,62 @@
+<div class="row mt-md-5">
+    <div class="col-md"></div>
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form role="form" class="m-sm-4">
+                    <header class="text-center mb-7">
+                        <h2 class="mb-0">Reset your password</h2>
+                        <p>Enter a new password for your account.</p>
+                    </header>
+
+                    <!-- Form Group -->
+                    <div class="source password form-group" data-name="password">
+                        <label class="sr-only" for="password-{_.container}">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="password-label-{_.container}">
+                                  <span class="fas fa-lock"></span>
+                                </span>
+                            </div>
+                            <input type="password" class="form-control" name="password" id="password-{_.container}"
+                                   placeholder="Password" aria-label="Password"
+                                   aria-describedby="password-label-{_.container}"
+                                   required>
+                        </div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <!-- End Form Group -->
+
+                    <div class="mb-2">
+                        <button type="submit" class="reset btn btn-block btn-secondary">Reset</button>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-6">
+                            <span class="small text-muted">Do not have an account?</span>
+                            <a class="small" href="/signup"> Sign up</a>
+                        </div>
+
+                        <div class="col-6 text-right">
+                            <a class="small link-muted" href="/signin">Remember password?</a>
+                        </div>
+                    </div>
+
+                    <!-- Login Buttons -->
+                    <div class="login d-flex">
+                        <a class="facebook btn btn-block border mr-1" href="#">
+                            <span class="fab fa-facebook-square mr-1"></span>
+                            Facebook
+                        </a>
+                        <a class="google btn btn-block border ml-1 mt-0" href="#">
+                            <span class="fab fa-google mr-1"></span>
+                            Google
+                        </a>
+                    </div>
+                    <!-- End Login Buttons -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md"></div>
+</div>

@@ -1,0 +1,56 @@
+{
+    "name": "accounts-client",
+    "description": "accounts-client",
+    "dependencies": {
+        "visionmedia/page.js": "*",
+        "serandomps/async": "master",
+        "serandomps/dust": "master",
+        "serandomps/serand": "master",
+        "serandomps/auth": "master",
+        "serandomps/user": "master",
+        "serandomps/utils": "master",
+        "serandomps/token": "master",
+        "serandomps/home": "master",
+        "serandomps/captcha": "master",
+        "serandomps/form": "master",
+        "serandomps/validators": "master",
+        "serandomps/breadcrumb": "master",
+        "serandomps/navigation": "master",
+        "serandomps/locate": "master",
+        "serandomps/contacts": "master",
+        "serandomps/locations": "master",
+        "serandomps/upload": "master"
+    },
+    "scripts": [
+        "index.js",
+        "authorize/index.js",
+        "authorized/index.js",
+        "confirm/index.js",
+        "home/index.js",
+        "navigation/index.js",
+        "profile/index.js",
+        "recover/index.js",
+        "recovered/index.js",
+        "reset/index.js",
+        "signin/index.js",
+        "signup/index.js",
+        "token/index.js"
+    ],
+    "styles": [
+        "index.css"
+    ],
+    "templates": [
+        "authorize/template.html",
+        "authorized/template.html",
+        "confirm/template.html",
+        "home/template.html",
+        "profile/template.html",
+        "recover/template.html",
+        "recovered/template.html",
+        "reset/template.html",
+        "signin/template.html",
+        "signup/template.html",
+        "token/template.html"
+    ],
+    "main": "index.js"
+}

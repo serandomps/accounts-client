@@ -1,0 +1,46 @@
+<div class="row mt-md-5">
+    <div class="col-md"></div>
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form role="form" class="m-sm-4">
+                    <header class="text-center mb-7">
+                        <h2 class="mb-0">Recover Password</h2>
+                        <p>Enter your email address and an email with instructions will be sent to you.</p>
+                    </header>
+
+                    <div class="source email form-group" data-name="email">
+                        <label class="sr-only" for="email-{_.container}">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="email-label-{_.container}">
+                                  <span class="fas fa-user"></span>
+                                </span>
+                            </div>
+                            <input type="email" class="form-control" name="email" id="email-{_.container}"
+                                   placeholder="Email" aria-label="Email"
+                                   aria-describedby="email-label-{_.container}"
+                                   required>
+                        </div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <!-- End Form Group -->
+
+                    <div class="form-group">
+                        <div class="captcha" data-size="normal"></div>
+                    </div>
+
+                    <div class="mb-2">
+                        <button type="submit" class="recover btn btn-block btn-secondary" disabled>Recover</button>
+                    </div>
+
+                    <div class="text-center mb-4">
+                        <span class="small text-muted">Remember your password?</span>
+                        <a class="small" href="/signin"> Sign in</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md"></div>
+</div>
