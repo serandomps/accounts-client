@@ -146,12 +146,10 @@ var configs = {
         },
         render: function (ctx, vform, data, value, done) {
             var options = _.isString(value) ? {user: data.user, contact: value} : value;
-            alert('called')
             contacts.picker(ctx, {
                 id: vform.id,
                 sandbox: $('.contact', vform.elem)
             }, options, function (err, o) {
-                alert('none')
                 if (err) {
                     return done(err);
                 }
