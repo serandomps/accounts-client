@@ -202,7 +202,7 @@ var authenticate = function (captcha, captchaId, xcaptcha, username, password, o
                     return done(err);
                 }
                 user.has = tok.has;
-                serand.emit('user', 'logged in', user, options);
+                serand.emit('user', 'initialize', user, options);
                 done()
             });
         },

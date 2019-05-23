@@ -3,7 +3,6 @@ var serand = require('serand');
 var utils = require('utils');
 var token = require('token');
 var user = require('user');
-var redirect = serand.redirect;
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-token'));
 
@@ -19,7 +18,7 @@ module.exports = function (ctx, container, options, done) {
                 serand.emit('user', 'login error', err);
                 return console.error(err);
             }
-            serand.emit('user', 'logged in', usr, o);
+            serand.emit('user', 'initialize', usr, o);
             serand.store('oauth', null);
         });
         sandbox.append(out);

@@ -4,6 +4,7 @@ var utils = require('utils');
 var user = require('user');
 var form = require('form');
 var locate = require('locate');
+var locations = require('locations');
 var contacts = require('contacts');
 
 var BINARY_API = utils.resolve('accounts:///apis/v/binaries');
@@ -117,10 +118,10 @@ var configs = {
         },
         render: function (ctx, vform, data, value, done) {
             var options = _.isString(value) ? {user: data.user, location: value} : value;
-            locate({}, {
-                id: vform.id,
-                sandbox: $('.location', vform.elem)
-            }, options, function (err, o) {
+            locations.picker(ctx, {
+                    id: vform.id,
+                    sandbox: $('.location', vform.elem)
+                }, options, function (err, o) {
                 if (err) {
                     return done(err);
                 }

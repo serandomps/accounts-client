@@ -3,7 +3,6 @@
     "description": "accounts-client",
     "dependencies": {
         "visionmedia/page.js": "*",
-        "serandomps/async": "master",
         "serandomps/dust": "master",
         "serandomps/serand": "master",
         "serandomps/auth": "master",
