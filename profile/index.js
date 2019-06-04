@@ -237,7 +237,7 @@ var configs = {
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
     options = options || {};
-    user.findOne(ctx.user.id, function (err, usr) {
+    user.findOne(ctx.token.user.id, function (err, usr) {
         if (err) {
             return done(err);
         }

@@ -4,6 +4,7 @@ var utils = require('utils');
 var captcha = require('captcha');
 var form = require('form');
 var auth = require('auth');
+var user = require('user');
 var token = require('token');
 var redirect = serand.redirect;
 
@@ -189,21 +190,21 @@ var authenticate = function (captcha, captchaId, xcaptcha, username, password, o
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         success: function (tok) {
-            var user = {
-                tid: tok.id,
-                username: username,
-                access: tok.access_token,
-                refresh: tok.refresh_token,
-                expires: tok.expires_in
-            };
-            token.findOne(user.tid, user.access, function (err, tok) {
+            var access = tok.access_token;
+            token.findOne(tok.id, access, function (err, tok) {
                 if (err) {
                     serand.emit('user', 'login error', err);
                     return done(err);
                 }
-                user.has = tok.has;
-                serand.emit('user', 'initialize', user, options);
-                done()
+                user.findOne(tok.user, access, function (err, usr) {
+                    if (err) {
+                        serand.emit('user', 'login error', err);
+                        return done(err);
+                    }
+                    tok.user = usr;
+                    serand.emit('user', 'token', tok, options);
+                    done()
+                });
             });
         },
         error: function (xhr, status, err) {

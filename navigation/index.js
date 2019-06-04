@@ -19,8 +19,8 @@ var render = function (id, done) {
     });
 };
 
-var filter = function (options, user, links) {
-    if (user) {
+var filter = function (options, token, links) {
+    if (token) {
         return links;
     }
     if (options.signup) {
@@ -53,12 +53,12 @@ module.exports = function (ctx, container, options, done) {
     });
 };
 
-serand.on('user', 'ready', function (user) {
+serand.on('user', 'ready', function (token) {
     ready = true;
     if (!context) {
         return;
     }
     render(0, function(err, links) {
-        navigation(context.ctx, context.sandbox, filter(context.options, user, links), context.done);
+        navigation(context.ctx, context.sandbox, filter(context.options, token, links), context.done);
     });
 });

@@ -13,12 +13,12 @@ module.exports = function (ctx, container, options, done) {
             return done(err);
         }
         var o = serand.store('oauth');
-        findToken(o, options, function (err, usr) {
+        findToken(o, options, function (err, token) {
             if (err) {
                 serand.emit('user', 'login error', err);
                 return console.error(err);
             }
-            serand.emit('user', 'initialize', usr, o);
+            serand.emit('user', 'token', token, o);
             serand.store('oauth', null);
         });
         sandbox.append(out);
@@ -41,24 +41,20 @@ var findToken = function (o, options, done) {
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         success: function (tok) {
-            var uzer = {
-                tid: tok.id,
-                access: tok.access_token,
-                refresh: tok.refresh_token,
-                expires: tok.expires_in
-            };
-            token.findOne(uzer.tid, uzer.access, function (err, tok) {
+            tok.access = tok.access_token;
+            tok.refresh = tok.refresh_token;
+            tok.expires = tok.expires_in;
+            token.findOne(tok.id, tok.access, function (err, tok) {
                 if (err) {
                     return done(err);
                 }
-                uzer.has = tok.has;
-                user.findOne(tok.user, uzer.access, function (err, usr) {
+                user.findOne(tok.user, tok.access, function (err, usr) {
                     if (err) {
                         return done(err);
                     }
-                    uzer.id = usr.id
-                    uzer.username = usr.email;
-                    done(null, uzer);
+                    tok.username = usr.email;
+                    tok.user = usr;
+                    done(null, tok);
                 });
             });
         },
