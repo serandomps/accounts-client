@@ -33,11 +33,10 @@ var filter = function (options, token, links) {
 };
 
 module.exports = function (ctx, container, options, done) {
-    var sandbox = container.sandbox;
     options = options || {};
     context = {
         ctx: ctx,
-        sandbox: sandbox,
+        container: container,
         options: options,
         done: done
     };
@@ -49,7 +48,7 @@ module.exports = function (ctx, container, options, done) {
         if (err) {
             return done(err);
         }
-        navigation(ctx, container, filter(options, null, links), done);
+        navigation(ctx, container, serand.pack(filter(options, null, links), container), done);
     });
 };
 
@@ -59,6 +58,6 @@ serand.on('user', 'ready', function (token) {
         return;
     }
     render(0, function(err, links) {
-        navigation(context.ctx, context.sandbox, filter(context.options, token, links), context.done);
+        navigation(context.ctx, context.container, serand.pack(filter(context.options, token, links), context.container), context.done);
     });
 });

@@ -3,7 +3,6 @@ var serand = require('serand');
 var utils = require('utils');
 var user = require('user');
 var form = require('form');
-var locate = require('locate');
 var locations = require('locations');
 var contacts = require('contacts');
 
@@ -241,12 +240,9 @@ module.exports = function (ctx, container, options, done) {
         if (err) {
             return done(err);
         }
-        dust.render('accounts-profile', {
-            _: {
-                container: container.id
-            },
+        dust.render('accounts-profile', serand.pack({
             user: usr
-        }, function (err, out) {
+        }, container), function (err, out) {
             if (err) {
                 return done(err);
             }

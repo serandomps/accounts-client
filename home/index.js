@@ -6,9 +6,9 @@ dust.loadSource(dust.compile(require('./template'), 'accounts-home'));
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
     options = options || {};
-    dust.render('accounts-home', {
+    dust.render('accounts-home', serand.pack({
         username: options.username
-    }, function (err, out) {
+    }, container), function (err, out) {
         if (err) {
             return done(err);
         }

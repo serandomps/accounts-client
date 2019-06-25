@@ -34,11 +34,7 @@ var configs = {
 
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
-    dust.render('accounts-reset', {
-        _: {
-            container: container.id
-        }
-    }, function (err, out) {
+    dust.render('accounts-reset', serand.pack({}, container), function (err, out) {
         if (err) {
             return done(err);
         }

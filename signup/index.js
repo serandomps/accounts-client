@@ -83,13 +83,10 @@ module.exports = function (ctx, container, options, done) {
 
     var captchaId;
 
-    dust.render('accounts-signup', {
-        _: {
-            container: container.id
-        },
+    dust.render('accounts-signup', serand.pack({
         home: home,
         signup: signup
-    }, function (err, out) {
+    }, container), function (err, out) {
         if (err) {
             return done(err);
         }

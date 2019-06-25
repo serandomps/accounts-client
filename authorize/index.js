@@ -5,7 +5,7 @@ dust.loadSource(dust.compile(require('./template'), 'accounts-authorize'));
 
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
-    dust.render('accounts-authorize', options, function (err, out) {
+    dust.render('accounts-authorize', serand.pack(options, container), function (err, out) {
         if (err) {
             return done(err);
         }

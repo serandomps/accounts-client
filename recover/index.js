@@ -31,11 +31,7 @@ module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
     var captchaId;
 
-    dust.render('accounts-recover', {
-        _: {
-            container: container.id
-        }
-    }, function (err, out) {
+    dust.render('accounts-recover', serand.pack({}, container), function (err, out) {
         if (err) {
             return done(err);
         }

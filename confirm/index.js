@@ -7,9 +7,9 @@ dust.loadSource(dust.compile(require('./template'), 'accounts-confirm'));
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
     options = options || {};
-    dust.render('accounts-confirm', {
+    dust.render('accounts-confirm', serand.pack(container,{
         email: options.email
-    }, function (err, out) {
+    }), function (err, out) {
         if (err) {
             return done(err);
         }

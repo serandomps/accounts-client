@@ -8,7 +8,7 @@ dust.loadSource(dust.compile(require('./template'), 'accounts-token'));
 
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
-    dust.render('accounts-token', options, function (err, out) {
+    dust.render('accounts-token', serand.pack(options, container), function (err, out) {
         if (err) {
             return done(err);
         }
