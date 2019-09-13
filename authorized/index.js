@@ -11,9 +11,14 @@ module.exports = function (ctx, container, options, done) {
         if (err) {
             return done(err);
         }
-        sandbox.append(out);
-        done(null, function () {
-            $('.accounts-authorized', sandbox).remove();
+        var el = sandbox.append(out);
+        done(null, {
+            clean: function () {
+                $('.accounts-authorized', sandbox).remove();
+            },
+            ready: function () {
+                $('.redirect-form', el).submit();
+            }
         });
     });
 };

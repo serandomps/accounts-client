@@ -23,6 +23,7 @@
         "index.js",
         "authorize/index.js",
         "authorized/index.js",
+        "unauthorized/index.js",
         "confirm/index.js",
         "home/index.js",
         "navigation/index.js",
@@ -35,11 +36,13 @@
         "token/index.js"
     ],
     "styles": [
-        "index.css"
+        "index.css",
+        "authorized/styles.css"
     ],
     "templates": [
         "authorize/template.html",
         "authorized/template.html",
+        "unauthorized/template.html",
         "confirm/template.html",
         "home/template.html",
         "profile/template.html",

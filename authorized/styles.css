@@ -1,3 +1,4 @@
-.sandbox-accounts-authorized .form-control {
-    margin-bottom: 10px;
+.sandbox-accounts-client-authorized .spinner-border {
+    width: 10em;
+    height: 10em;
 }

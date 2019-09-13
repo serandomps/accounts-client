@@ -1,13 +1,13 @@
-<div class="accounts-authorized card shadow-sm">
-    <div class="card-header">Redirecting</div>
-    <div class="card-body">
-        <form role="form" action="{options.location}" method="post">
-            <input type="hidden" name="tid" value="{token.id}">
-            <input type="hidden" name="username" value="{token.user.email}">
-            <input type="hidden" name="access_token" value="{token.access}">
-            <input type="hidden" name="refresh_token" value="{token.refresh}">
-            <input type="hidden" name="expires_in" value="{token.expires}">
-            <button type="submit" class="btn btn-secondary redirect">Redirect</button>
-        </form>
+<div class="accounts-authorized text-center">
+    <div class="spinner-border text-primary mt-5" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
+    <form role="form" class="redirect-form hidden" action="{options.location}" method="post">
+        <input type="hidden" name="tid" value="{token.id}">
+        <input type="hidden" name="username" value="{token.user.email}">
+        <input type="hidden" name="access_token" value="{token.access}">
+        <input type="hidden" name="refresh_token" value="{token.refresh}">
+        <input type="hidden" name="expires_in" value="{token.expires}">
+        <button type="submit" class="btn btn-secondary redirect">Redirect</button>
+    </form>
 </div>

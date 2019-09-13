@@ -1,5 +1,6 @@
 exports.authorize = require('./authorize');
 exports.authorized = require('./authorized');
+exports.unauthorized = require('./unauthorized');
 exports.confirm = require('./confirm');
 exports.home = require('./home');
 exports.navigation = require('./navigation');

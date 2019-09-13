@@ -34,7 +34,7 @@ var findToken = function (o, options, done) {
         url: utils.resolve('accounts:///apis/v/tokens'),
         data: {
             redirect_uri: o.location,
-            client_id: o.clientId,
+            client_id: o.client,
             grant_type: o.type,
             code: options.code
         },

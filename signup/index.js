@@ -72,8 +72,8 @@ module.exports = function (ctx, container, options, done) {
     var append = function (suff) {
         suffix += (suffix ? '&' : '?') + suff;
     };
-    if (options.clientId) {
-        append('client_id=' + options.clientId);
+    if (options.client) {
+        append('client_id=' + options.client);
     }
     if (options.location) {
         append('redirect_uri=' + options.location);
