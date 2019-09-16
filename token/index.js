@@ -15,10 +15,10 @@ module.exports = function (ctx, container, options, done) {
         var o = serand.store('oauth');
         findToken(o, options, function (err, token) {
             if (err) {
-                serand.emit('user', 'login error', err);
+                utils.emit('user', 'login error', err);
                 return console.error(err);
             }
-            serand.emit('user', 'token', token, o);
+            utils.emit('user', 'token', token, o);
             serand.store('oauth', null);
         });
         sandbox.append(out);

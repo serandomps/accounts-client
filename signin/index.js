@@ -190,16 +190,16 @@ var authenticate = function (captcha, captchaId, xcaptcha, username, password, o
             var access = tok.access_token;
             token.findOne(tok.id, access, function (err, tok) {
                 if (err) {
-                    serand.emit('user', 'login error', err);
+                    utils.emit('user', 'login error', err);
                     return done(err);
                 }
                 user.findOne(tok.user, access, function (err, usr) {
                     if (err) {
-                        serand.emit('user', 'login error', err);
+                        utils.emit('user', 'login error', err);
                         return done(err);
                     }
                     tok.user = usr;
-                    serand.emit('user', 'token', tok, options);
+                    utils.emit('user', 'token', tok, options);
                     done()
                 });
             });
@@ -207,7 +207,7 @@ var authenticate = function (captcha, captchaId, xcaptcha, username, password, o
         error: function (xhr, status, err) {
             captcha.reset(captchaId, function () {
                 err = err || status || xhr;
-                serand.emit('user', 'login error', err);
+                utils.emit('user', 'login error', err);
                 done(err);
             });
         }
