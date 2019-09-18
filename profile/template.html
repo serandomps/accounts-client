@@ -1,42 +1,43 @@
-<h1 class="title text-center mb-3">{user.email}</h1>
-<div class="card">
-    <div class="card-header">Profile</div>
+<h1 class="title text-center font-weight-bolder text-muted">{user.email}</h1>
+<div class="card mb-3 mt-3 bg-light">
     <div class="card-body">
-        <div class="row">
-            <div class="avatar col-md-4 order-md-2 mb-4">
-                <div class="preview text-center">
-                    {#user._.avatar}
-                    <img class="rounded-circle" src="{user._.avatar}" alt="Picture"/>
-                    {:else}
-                    <i class="fas fa-user-circle fa-9x text-muted"></i>
-                    {/user._.avatar}
-                </div>
-                <div class="text-center mt-4">
-                    <input type="file" multiple="" name="content" class="fileupload hidden">
-                    <button type="button" class="upload btn btn-secondary">Change</button>
-                    {#user._.avatar}
-                    <button type="button" class="btn btn-danger ml-1">Delete</button>
-                    {/user._.avatar}
-                </div>
+        <div class="avatar mb-4">
+            <div class="preview text-center">
+                {#user._.avatar}
+                <img class="rounded-circle" src="{user._.avatar}" alt="Picture"/>
+                {:else}
+                <i class="fas fa-user-circle fa-9x text-muted"></i>
+                {/user._.avatar}
             </div>
-            <div class="col-md-8 order-md-1">
-                <form class="needs-validation" novalidate>
-                    <h4 class="mb-3">Personal Details</h4>
-                    {@blocks block="text" id=_.container name="alias" help="Alias" value=user.alias label="Alias" css="mb-3"/}
-                    {@blocks block="text" id=_.container name="name" help="Name" value=user.name label="Name" css="mb-3"/}
-                    <h4 class="mb-3 mt-5">Change Password</h4>
-                    {@blocks block="password" id=_.container name="otp" help="Old Password" label="Old Password" css="mb-3"/}
-                    {@blocks block="password" id=_.container name="password" help="New Password" label="New Password" css="mb-3"/}
-
-                    <h4 class="mb-3 mt-5">Contacts</h4>
-                    <div class="contact mb-3"></div>
-
-                    <h4 class="mb-3 mt-5">Address</h4>
-                    <div class="location mb-3"></div>
-
-                    <button class="update btn btn-secondary btn-block mt-5" type="button">Update</button>
-                </form>
+            <div class="text-center mt-4">
+                <input type="file" multiple="" name="content" class="fileupload hidden">
+                <button type="button" class="upload btn btn-dark">Change</button>
+                {#user._.avatar}
+                <button type="button" class="btn btn-danger ml-1">Delete</button>
+                {/user._.avatar}
             </div>
         </div>
+        <form class="needs-validation" novalidate>
+            <h2 class="mb-3 font-weight-bolder text-muted">Personal Details</h2>
+            {@blocks block="text" id=_.container name="alias" help="Alias" value=user.alias label="Alias" css="mb-3"/}
+            {@blocks block="text" id=_.container name="name" help="Name" value=user.name label="Name" css="mb-3"/}
+            <h2 class="mb-3 mt-5 font-weight-bolder text-muted">Change Password</h2>
+            {@blocks block="password" id=_.container name="otp" help="Old Password" label="Old Password" css="mb-3"/}
+            {@blocks block="password" id=_.container name="password" help="New Password" label="New Password"
+            css="mb-3"/}
+
+            <h2 class="mb-3 mt-5 font-weight-bolder text-muted">Contacts</h2>
+            <div class="contact mb-3"></div>
+
+            <h2 class="mb-3 mt-5 font-weight-bolder text-muted">Address</h2>
+            <div class="location mb-3"></div>
+
+            <button type="button" class="cancel btn btn-secondary mr-1">
+                <i class="fas fa-arrow-left fa-fw mr-1"></i>Cancel
+            </button>
+            <button type="button" class="update btn btn-primary">
+                <i class="fas fa-save fa-fw mr-1"></i>Update
+            </button>
+        </form>
     </div>
 </div>

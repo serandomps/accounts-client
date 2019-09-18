@@ -300,6 +300,9 @@ module.exports = function (ctx, container, options, done) {
                     });
                     return false;
                 });
+                sandbox.on('click', '.cancel', function (e) {
+                    serand.redirect('/');
+                });
                 done(null, function () {
                     sandbox.remove();
                 });
