@@ -20,6 +20,9 @@ var render = function (id, done) {
 };
 
 var filter = function (options, token, links) {
+    links.fixed = true;
+    links.background = 'bg-secondary';
+    links.color = 'navbar-dark';
     if (token) {
         return links;
     }
