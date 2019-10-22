@@ -48,6 +48,7 @@ module.exports = function (ctx, container, options, done) {
             }
             var reset = $('.reset', elem);
             sandbox.on('click', '.reset', function (e) {
+                utils.loading();
                 lform.find(function (err, data) {
                     if (err) {
                         return console.error(err);
@@ -57,6 +58,7 @@ module.exports = function (ctx, container, options, done) {
                             return console.error(err);
                         }
                         if (errors) {
+                            utils.loaded();
                             lform.update(errors, data, function (err) {
                                 if (err) {
                                     return console.error(err);
@@ -74,6 +76,7 @@ module.exports = function (ctx, container, options, done) {
                                     return console.error(err);
                                 }
                                 if (errors) {
+                                    utils.loaded();
                                     lform.update(errors, data, function (err) {
                                         if (err) {
                                             return console.error(err);
@@ -86,6 +89,7 @@ module.exports = function (ctx, container, options, done) {
                                     if (err) {
                                         return console.error(err);
                                     }
+                                    utils.loaded();
                                     serand.redirect('/signin');
                                 });
                             });

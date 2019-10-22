@@ -80,6 +80,7 @@ module.exports = function (ctx, container, options, done) {
             }
             var signin = $('.signin', elem);
             sandbox.on('click', '.signin', function (e) {
+                utils.loading();
                 $('.signin-error', sandbox).text('');
                 lform.find(function (err, data) {
                     if (err) {
@@ -90,6 +91,7 @@ module.exports = function (ctx, container, options, done) {
                             return console.error(err);
                         }
                         if (errors) {
+                            utils.loaded();
                             lform.update(errors, data, function (err) {
                                 if (err) {
                                     return console.error(err);
@@ -107,6 +109,7 @@ module.exports = function (ctx, container, options, done) {
                                     return console.error(err);
                                 }
                                 if (errors) {
+                                    utils.loaded();
                                     lform.update(errors, data, function (err) {
                                         if (err) {
                                             return console.error(err);
@@ -120,9 +123,11 @@ module.exports = function (ctx, container, options, done) {
                                         return console.error(err);
                                     }
                                     if (!xcaptcha) {
+                                        utils.loaded();
                                         return;
                                     }
                                     authenticate(captcha, captchaId, xcaptcha, data.username, data.password, options, function (err) {
+                                        utils.loaded();
                                         if (err) {
                                             $('.signin-error', sandbox).text('Username or the password you entered is invalid');
                                             signin.attr('disabled', 'disabled');
@@ -136,6 +141,7 @@ module.exports = function (ctx, container, options, done) {
                 return false;
             });
             sandbox.on('click', '.facebook', function (e) {
+                utils.loading();
                 serand.store('oauth', {
                     type: 'facebook',
                     client: options.client,
@@ -145,6 +151,10 @@ module.exports = function (ctx, container, options, done) {
                     type: 'facebook',
                     location: utils.resolve('accounts:///auth/oauth')
                 }, function (err, uri) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    utils.loaded();
                     redirect(uri);
                 });
                 return false;

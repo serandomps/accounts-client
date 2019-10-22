@@ -98,6 +98,7 @@ module.exports = function (ctx, container, options, done) {
             }
             var signup = $('.signup', elem);
             sandbox.on('click', '.signup', function (e) {
+                utils.loading();
                 $('.signup-error', sandbox).text('');
                 lform.find(function (err, data) {
                     if (err) {
@@ -108,6 +109,7 @@ module.exports = function (ctx, container, options, done) {
                             return console.error(err);
                         }
                         if (errors) {
+                            utils.loaded();
                             lform.update(errors, data, function (err) {
                                 if (err) {
                                     return console.error(err);
@@ -125,6 +127,7 @@ module.exports = function (ctx, container, options, done) {
                                     return console.error(err);
                                 }
                                 if (errors) {
+                                    utils.loaded();
                                     lform.update(errors, data, function (err) {
                                         if (err) {
                                             return console.error(err);
@@ -138,6 +141,7 @@ module.exports = function (ctx, container, options, done) {
                                         return console.error(err);
                                     }
                                     if (!xcaptcha) {
+                                        utils.loaded();
                                         return;
                                     }
                                     $.ajax({
@@ -150,9 +154,11 @@ module.exports = function (ctx, container, options, done) {
                                         },
                                         dataType: 'json',
                                         success: function (data) {
+                                            utils.loaded();
                                             serand.redirect('/signin');
                                         },
                                         error: function (xhr, status, err) {
+                                            utils.loaded();
                                             captcha.reset(captchaId, function () {
                                                 if (xhr.status === 409) {
                                                     $('.signup-error', sandbox).text('Email address provided already exists. Please try signing in.');

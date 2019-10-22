@@ -43,6 +43,7 @@ module.exports = function (ctx, container, options, done) {
             }
             var recover = $('.recover', elem);
             sandbox.on('click', '.recover', function (e) {
+                utils.loading();
                 lform.find(function (err, data) {
                     if (err) {
                         return console.error(err);
@@ -52,6 +53,7 @@ module.exports = function (ctx, container, options, done) {
                             return console.error(err);
                         }
                         if (errors) {
+                            utils.loaded();
                             lform.update(errors, data, function (err) {
                                 if (err) {
                                     return console.error(err);
@@ -69,6 +71,7 @@ module.exports = function (ctx, container, options, done) {
                                     return console.error(err);
                                 }
                                 if (errors) {
+                                    utils.loaded();
                                     lform.update(errors, data, function (err) {
                                         if (err) {
                                             return console.error(err);
@@ -82,12 +85,14 @@ module.exports = function (ctx, container, options, done) {
                                         return console.error(err);
                                     }
                                     if (!xcaptcha) {
+                                        utils.loaded();
                                         return;
                                     }
                                     recovery(captcha, captchaId, xcaptcha, data.email, options, function (err) {
                                         if (err) {
                                             return console.error(err);
                                         }
+                                        utils.loaded();
                                         serand.redirect('/recovered?email=' + data.email);
                                     });
                                 });
