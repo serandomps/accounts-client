@@ -49,7 +49,7 @@ var findGrant = function (client, user, done) {
     };
     $.ajax({
         method: 'GET',
-        url: utils.resolve('accounts:///apis/v/grants' + utils.data(options)),
+        url: utils.resolve('accounts:///apis/v/grants' + utils.toData(options)),
         dataType: 'json',
         success: function (data) {
             done(null, data.length ? data[0] : null);
