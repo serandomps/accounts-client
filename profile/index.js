@@ -6,7 +6,7 @@ var form = require('form');
 var locations = require('locations');
 var contacts = require('contacts');
 
-var BINARY_API = utils.resolve('accounts:///apis/v/binaries');
+var BINARY_API = utils.resolve('www:///apis/v/binaries');
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-profile'));
 
