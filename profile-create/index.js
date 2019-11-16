@@ -8,7 +8,7 @@ var contacts = require('contacts');
 
 var BINARY_API = utils.resolve('www:///apis/v/binaries');
 
-dust.loadSource(dust.compile(require('./template'), 'accounts-profile'));
+dust.loadSource(dust.compile(require('./template'), 'accounts-profile-create'));
 
 var configs = {
     name: {
@@ -29,7 +29,7 @@ var configs = {
         },
         validate: function (context, data, value, done) {
             if (!value) {
-                return done(null, 'Please enter an alias for your account');
+                return done(null, 'Please enter an alias for your account.');
             }
             done(null, null, value);
         },
@@ -56,7 +56,7 @@ var configs = {
         },
         validate: function (context, data, value, done) {
             if (data.password && !value) {
-                return done(null, 'Please enter your current password');
+                return done(null, 'Please enter your current password.');
             }
             done(null, null, value);
         },
@@ -83,7 +83,7 @@ var configs = {
                 },
                 error: function (xhr, status, err) {
                     if (xhr.status === 401) {
-                        return done(null, 'Old password you entered is incorrect');
+                        return done(null, 'Old password you entered is incorrect.');
                     }
                     done(err);
                 }
@@ -96,7 +96,7 @@ var configs = {
         },
         validate: function (context, data, value, done) {
             if (data.otp && !value) {
-                return done(null, 'Please enter your new password');
+                return done(null, 'Please enter your new password.');
             }
             done(null, null, value);
         },
@@ -116,11 +116,13 @@ var configs = {
             context.update(error, value, done);
         },
         render: function (ctx, vform, data, value, done) {
-            var options = _.isString(value) ? {user: data.user, location: value} : value;
             locations.picker(ctx, {
-                    id: vform.id,
-                    sandbox: $('.location', vform.elem)
-                }, options, function (err, o) {
+                id: vform.id,
+                sandbox: $('.location', vform.elem)
+            }, {
+                label: 'Location',
+                location: value
+            }, function (err, o) {
                 if (err) {
                     return done(err);
                 }
@@ -145,11 +147,13 @@ var configs = {
             context.update(error, value, done);
         },
         render: function (ctx, vform, data, value, done) {
-            var options = _.isString(value) ? {user: data.user, contact: value} : value;
             contacts.picker(ctx, {
                 id: vform.id,
                 sandbox: $('.contact', vform.elem)
-            }, options, function (err, o) {
+            }, {
+                label: 'Contacts',
+                contact: value
+            }, function (err, o) {
                 if (err) {
                     return done(err);
                 }
@@ -202,16 +206,30 @@ var configs = {
                 var file = data.files[0];
                 var err = file.error;
                 if (err) {
+                    utils.loaded();
                     return console.error(err);
                 }
                 context.avatar = data.result.id;
                 context.pending = false;
                 console.log('successfully uploaded %s', data.result.id);
-                if (context.create) {
-                    context.create(null, null, context.avatar);
-                }
+                user.findOne(ctx.token.user.id, function (err, usr) {
+                    if (err) {
+                        utils.loaded();
+                        return done(err);
+                    }
+                    user.update(usr, {avatar: context.avatar}, function (err) {
+                        if (err) {
+                            utils.loaded();
+                            return console.error(err);
+                        }
+                        utils.loaded();
+                        ctx.token.user.avatar = context.avatar;
+                        serand.redirect('/profile');
+                    });
+                });
             }).on('fileuploadadd', function (e, data) {
                 context.pending = true;
+                utils.loading();
             }).on('fileuploadprocessalways', function (e, data) {
                 var file = data.files[0];
                 var err = file.error;
@@ -240,7 +258,7 @@ module.exports = function (ctx, container, options, done) {
         if (err) {
             return done(err);
         }
-        dust.render('accounts-profile', serand.pack({
+        dust.render('accounts-profile-create', serand.pack({
             user: usr
         }, container), function (err, out) {
             if (err) {
@@ -299,6 +317,19 @@ module.exports = function (ctx, container, options, done) {
                         });
                     });
                     return false;
+                });
+                sandbox.on('click', '.remove', function () {
+                    user.findOne(ctx.token.user.id, function (err, usr) {
+                        if (err) {
+                            return console.error(err);
+                        }
+                        user.update(usr, {avatar: null}, function (err) {
+                            if (err) {
+                                return console.error(err);
+                            }
+                            serand.redirect('/profile');
+                        });
+                    });
                 });
                 sandbox.on('click', '.cancel', function (e) {
                     serand.redirect('/');

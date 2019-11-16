@@ -1,0 +1,88 @@
+<div class="row mb-3">
+    <div class="col-md">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <h4 class="d-lg-none pull-right"><span class="badge badge-secondary text-capitalize">{status}</span></h4>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                    data-target="#navbar-accounts-profile-findone-{_.container}"
+                    aria-controls="navbar-acounts-profile-findone-{_.container}" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar-accounts-profile-findone-{_.container}">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link edit" href="/profile">
+                            <i class="fas fa-edit fa-fw text-primary mr-1"></i> Edit
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md">
+        <div class="avatar mb-4">
+            <div class="preview text-center">
+                {#_.avatar}
+                <img class="rounded-circle" src="{_.avatar}" alt="Picture"/>
+                {:else}
+                <i class="fas fa-user-circle fa-9x text-muted"></i>
+                {/._.avatar}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md mb-3">
+        <div class="media">
+                <span class="btn rounded-circle mr-2">
+                  <span class="fas fa-user fa-fw fa-2x text-dark"></span>
+                </span>
+            <div class="media-body">
+                <h4 class="h6 text-secondary mb-0 mt-0 font-weight-bold">Alias</h4>
+                <span class="h5 font-weight-bold text-primary">{alias}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md mb-3">
+        <div class="media">
+                <span class="btn rounded-circle mr-2">
+                  <span class="fas fa-envelope fa-fw fa-2x text-dark"></span>
+                </span>
+            <div class="media-body">
+                <h4 class="h6 text-secondary mb-0 mt-0 font-weight-bold">Email</h4>
+                <span class="h5 font-weight-bold text-primary">{email}</span>
+            </div>
+        </div>
+    </div>
+    {?name}
+    <div class="col-md mb-3">
+        <div class="media">
+            <span class="btn rounded-circle mr-2">
+              <span class="fas fa-id-card-alt fa-fw fa-2x text-dark"></span>
+            </span>
+            <div class="media-body">
+                <h4 class="h6 text-secondary mb-0 mt-0 font-weight-bold">Name</h4>
+                <span class="h5 font-weight-bold text-primary">{name}</span>
+            </div>
+        </div>
+    </div>
+    {/name}
+</div>
+<div class="row mt-4">
+    {?_.location}
+    <div class="col-md mb-3">
+        <div class="media">
+                <span class="btn rounded-circle mr-2">
+                  <span class="fas fa-map-marker-alt fa-fw fa-2x text-dark"></span>
+                </span>
+            <div class="media-body">
+                <h4 class="h6 text-secondary mb-0 mt-0 font-weight-bold">Location</h4>
+                <span class="h5 font-weight-bold text-primary">{_.location.city}</span>
+            </div>
+        </div>
+    </div>
+    {/_.location}
+</div>
