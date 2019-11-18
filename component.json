@@ -27,6 +27,7 @@
         "confirm/index.js",
         "home/index.js",
         "navigation/index.js",
+        "password/index.js",
         "profile-create/index.js",
         "profile-findone/index.js",
         "recover/index.js",
@@ -38,6 +39,7 @@
     ],
     "styles": [
         "index.css",
+        "password/styles.css",
         "profile-create/styles.css",
         "profile-findone/styles.css"
     ],
@@ -47,6 +49,7 @@
         "unauthorized/template.html",
         "confirm/template.html",
         "home/template.html",
+        "password/template.html",
         "profile-create/template.html",
         "profile-findone/template.html",
         "recover/template.html",

@@ -4,6 +4,7 @@ exports.unauthorized = require('./unauthorized');
 exports.confirm = require('./confirm');
 exports.home = require('./home');
 exports.navigation = require('./navigation');
+exports.password = require('./password');
 exports['profile-create'] = require('./profile-create');
 exports['profile-findone'] = require('./profile-findone');
 exports.recover = require('./recover');

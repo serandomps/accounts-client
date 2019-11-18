@@ -224,7 +224,11 @@ var configs = {
                         }
                         utils.loaded();
                         ctx.token.user.avatar = context.avatar;
-                        serand.redirect('/profile');
+                        serand.redirect('/users/me', null, {
+                            _: {
+                                delay: 0
+                            }
+                        });
                     });
                 });
             }).on('fileuploadadd', function (e, data) {
@@ -306,11 +310,13 @@ module.exports = function (ctx, container, options, done) {
                                         });
                                         return;
                                     }
+                                    utils.loading();
                                     user.update(usr, data, function (err) {
+                                        utils.loaded();
                                         if (err) {
                                             return console.error(err);
                                         }
-                                        console.log('password updated successfully');
+                                        serand.redirect('/');
                                     });
                                 });
                             });
@@ -327,12 +333,12 @@ module.exports = function (ctx, container, options, done) {
                             if (err) {
                                 return console.error(err);
                             }
-                            serand.redirect('/profile');
+                            serand.redirect('/users/me');
                         });
                     });
                 });
                 sandbox.on('click', '.cancel', function (e) {
-                    serand.redirect('/');
+                    serand.redirect('/users/me');
                 });
                 done(null, function () {
                     sandbox.remove();
