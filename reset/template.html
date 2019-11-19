@@ -1,26 +1,22 @@
 <div class="row mt-md-5">
     <div class="col-md"></div>
     <div class="col-md-8 col-lg-6">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm bg-light">
             <div class="card-body">
                 <form role="form" class="m-sm-4">
-                    <header class="text-center mb-7">
-                        <h2 class="mb-0">Reset your password</h2>
+                    <header class="text-center mb-7 text-muted">
+                        <h1 class="mb-0 font-weight-bolder">Reset your password</h1>
                         <p>Enter a new password for your account.</p>
                     </header>
 
                     <!-- Form Group -->
                     <div class="source password form-group" data-name="password">
-                        <label class="sr-only" for="password-{_.container}">Password</label>
+                        <label for="password-{_.container}" class="title-text font-weight-bolder">
+                            <i class="text-dark fas fa-lock mr-2"></i>Password
+                        </label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="password-label-{_.container}">
-                                  <span class="fas fa-lock"></span>
-                                </span>
-                            </div>
                             <input type="password" class="form-control" name="password" id="password-{_.container}"
                                    placeholder="Password" aria-label="Password"
-                                   aria-describedby="password-label-{_.container}"
                                    required>
                         </div>
                         <div class="invalid-feedback"></div>
@@ -28,17 +24,18 @@
                     <!-- End Form Group -->
 
                     <div class="mb-2">
-                        <button type="submit" class="reset btn btn-block btn-secondary">Reset</button>
+                        <button type="submit" class="reset btn btn-block btn-primary font-weight-bolder">Reset</button>
                     </div>
 
-                    <div class="row mb-5">
-                        <div class="col-6">
-                            <span class="small text-muted">Do not have an account?</span>
-                            <a class="small" href="/signup"> Sign up</a>
+                    <div class="row mb-4 mt-1">
+                        <div class="col-5">
+                            <span class="text-muted mr-1 d-none d-md-inline">No account?</span>
+                            <a class="text-decoration-none" href="/signup">Sign up</a>
                         </div>
 
-                        <div class="col-6 text-right">
-                            <a class="small link-muted" href="/signin">Remember password?</a>
+                        <div class="col-7 text-right">
+                            <span class="text-muted mr-1 d-none d-md-inline">Remember password?</span>
+                            <a class="text-decoration-none" href="/signin">Sign in</a>
                         </div>
                     </div>
 

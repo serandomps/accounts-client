@@ -9,6 +9,7 @@ exports['profile-create'] = require('./profile-create');
 exports['profile-findone'] = require('./profile-findone');
 exports.recover = require('./recover');
 exports.recovered = require('./recovered');
+exports.registered = require('./registered');
 exports.reset = require('./reset');
 exports.signin = require('./signin');
 exports.signup = require('./signup');

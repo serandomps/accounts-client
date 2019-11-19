@@ -1,25 +1,21 @@
 <div class="row mt-md-5">
     <div class="col-md"></div>
     <div class="col-md-8 col-lg-6">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm bg-light">
             <div class="card-body">
                 <form role="form" class="m-sm-4">
-                    <header class="text-center mb-7">
-                        <h2 class="mb-0">Welcome Back!</h2>
+                    <header class="text-center mb-7 text-muted">
+                        <h1 class="mb-0 font-weight-bolder">Welcome Back</h1>
                         <p>Login to manage your account.</p>
                     </header>
 
                     <div class="source username form-group" data-name="username">
-                        <label class="sr-only" for="username-{_.container}">Email</label>
+                        <label for="email-{_.container}" class="title-text font-weight-bolder">
+                            <i class="text-dark fas fa-envelope mr-2"></i>Email
+                        </label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="username-label-{_.container}">
-                                  <span class="fas fa-user"></span>
-                                </span>
-                            </div>
-                            <input type="email" class="form-control" name="username" id="username-{_.container}"
-                                   placeholder="Username" aria-label="Username"
-                                   aria-describedby="username-label-{_.container}"
+                            <input type="email" class="form-control" name="email" id="email-{_.container}"
+                                   placeholder="Email" aria-label="Email"
                                    required>
                         </div>
                         <div class="invalid-feedback"></div>
@@ -28,16 +24,12 @@
 
                     <!-- Form Group -->
                     <div class="source password form-group" data-name="password">
-                        <label class="sr-only" for="password-{_.container}">Password</label>
+                        <label for="password-{_.container}" class="title-text font-weight-bolder">
+                            <i class="text-dark fas fa-lock mr-2"></i>Password
+                        </label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="password-label-{_.container}">
-                                  <span class="fas fa-lock"></span>
-                                </span>
-                            </div>
                             <input type="password" class="form-control" name="password" id="password-{_.container}"
                                    placeholder="Password" aria-label="Password"
-                                   aria-describedby="password-label-{_.container}"
                                    required>
                         </div>
                         <div class="invalid-feedback"></div>
@@ -52,30 +44,30 @@
                     </div>
 
                     <div class="mb-2">
-                        <button type="submit" class="signin btn btn-block btn-secondary" disabled>Sign in</button>
+                        <button type="submit" class="signin btn btn-block btn-primary font-weight-bolder" disabled>Sign in</button>
                     </div>
 
-                    <div class="row mb-5">
-                        <div class="col-6">
-                            <span class="small text-muted">Do not have an account?</span>
-                            <a class="small" href="/signup"> Sign up</a>
+                    <div class="row mb-4 mt-1">
+                        <div class="col-lg-6 mb-1">
+                            <span class="text-muted mr-1">No account?</span>
+                            <a class="text-decoration-none" href="/signup">Sign up</a>
                         </div>
 
-                        <div class="col-6 text-right">
-                            <a class="small link-muted" href="/recover">Forgot password?</a>
+                        <div class="col-lg-6 text-lg-right mb-1">
+                            <span class="text-muted mr-1">Forgot password?</span>
+                            <a class="text-decoration-none" href="/recover">Recover</a>
                         </div>
                     </div>
 
                     <!-- Login Buttons -->
-                    <div class="login d-flex">
-                        <a class="facebook btn btn-block border mr-1" href="#">
-                            <span class="fab fa-facebook-square mr-1"></span>
-                            Facebook
+                    <div class="login d-flex justify-content-end text-right">
+                        <a class="facebook btn btn-link text-primary" href="#">
+                            <span class="fab fa-facebook-square fa-2x"></span>
                         </a>
-                        <a class="google btn btn-block border ml-1 mt-0" href="#">
-                            <span class="fab fa-google mr-1"></span>
-                            Google
-                        </a>
+                        <!--<a class="google btn btn-link mt-0 text-danger" href="#">
+                            <span class="fab fa-google fa-2x mr-1"></span>
+
+                        </a>-->
                     </div>
                     <!-- End Login Buttons -->
                 </form>
