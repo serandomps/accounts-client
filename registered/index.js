@@ -1,12 +1,12 @@
 var dust = require('dust')();
 var serand = require('serand');
 
-dust.loadSource(dust.compile(require('./template'), 'accounts-recovered'));
+dust.loadSource(dust.compile(require('./template'), 'accounts-registered'));
 
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
     options = options || {};
-    dust.render('accounts-recovered', serand.pack({
+    dust.render('accounts-registered', serand.pack({
         email: options.email
     }, container), function (err, out) {
         if (err) {
