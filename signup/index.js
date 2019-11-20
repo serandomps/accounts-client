@@ -155,7 +155,7 @@ module.exports = function (ctx, container, options, done) {
                                         dataType: 'json',
                                         success: function (data) {
                                             utils.loaded();
-                                            serand.redirect('/recovered?email=' + data.email);
+                                            serand.redirect('/registered?email=' + data.email);
                                         },
                                         error: function (xhr, status, err) {
                                             utils.loaded();

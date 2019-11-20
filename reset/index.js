@@ -86,10 +86,11 @@ module.exports = function (ctx, container, options, done) {
                                     return;
                                 }
                                 update(options.user, options.otp, data.password, function (err) {
+                                    utils.loaded();
                                     if (err) {
+                                        $('.reset-error', sandbox).text('Password reset link is no longer valid.');
                                         return console.error(err);
                                     }
-                                    utils.loaded();
                                     serand.redirect('/signin');
                                 });
                             });
