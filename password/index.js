@@ -21,7 +21,7 @@ var configs = {
             $('input', source).val(value);
             done()
         },
-        create: function (context, value, done) {
+        create: function (context, data, value, done) {
             if (!value) {
                 return done();
             }

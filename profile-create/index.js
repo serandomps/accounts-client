@@ -64,7 +64,7 @@ var configs = {
             $('input', source).val(value);
             done()
         },
-        create: function (context, value, done) {
+        create: function (context, data, value, done) {
             if (!value) {
                 return done();
             }
@@ -129,7 +129,7 @@ var configs = {
                 done(null, o);
             });
         },
-        create: function (context, value, done) {
+        create: function (context, data, value, done) {
             if (!value) {
                 return done();
             }
@@ -160,7 +160,7 @@ var configs = {
                 done(null, o);
             });
         },
-        create: function (context, value, done) {
+        create: function (context, data, value, done) {
             if (!value) {
                 return done();
             }
@@ -245,7 +245,7 @@ var configs = {
                 .parent().addClass($.support.fileInput ? undefined : 'disabled');
             done(null, context);
         },
-        create: function (context, value, done) {
+        create: function (context, data, value, done) {
             if (context.pending) {
                 context.create = done;
                 return;
