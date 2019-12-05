@@ -2,9 +2,9 @@ var dust = require('dust')();
 var serand = require('serand');
 var utils = require('utils');
 var user = require('user');
-var locations = require('locations');
+var locations = require('model-locations');
 var Locations = locations.service;
-var contacts = require('contacts');
+var contacts = require('model-contacts');
 var Contacts = contacts.service;
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-profile-findone'));

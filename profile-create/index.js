@@ -3,8 +3,8 @@ var serand = require('serand');
 var utils = require('utils');
 var user = require('user');
 var form = require('form');
-var locations = require('locations');
-var contacts = require('contacts');
+var locations = require('model-locations');
+var contacts = require('model-contacts');
 
 var BINARY_API = utils.resolve('www:///apis/v/binaries');
 
