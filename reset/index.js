@@ -113,7 +113,7 @@ module.exports = function (ctx, container, options, done) {
 
 var update = function (user, otp, password, done) {
     $.ajax({
-        method: 'PUT',
+        method: 'POST',
         url: utils.resolve('accounts:///apis/v/users/' + user),
         data: JSON.stringify({
             password: password
