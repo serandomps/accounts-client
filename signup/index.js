@@ -3,13 +3,21 @@ var serand = require('serand');
 var utils = require('utils');
 var captcha = require('captcha');
 var form = require('form');
+var user = require('user');
 var validators = require('validators');
 var redirect = serand.redirect;
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-signup'));
 
+var validateUsername = function (username, done) {
+    if (/^.*(\-)\1{1,}.*$/.test(username) || !/^([a-z0-9]{1}[a-z0-9\-]{0,48}[a-z0-9]{1}|[a-z0-9]){1}$/.test(username)) {
+        return done('Username contains invalid characters or in an invalid format')
+    }
+    done();
+};
+
 var configs = {
-    alias: {
+    username: {
         find: function (context, source, done) {
             done(null, $('input', source).val());
         },
@@ -17,11 +25,50 @@ var configs = {
             if (!value) {
                 return done(null, 'Please enter a name for your account');
             }
-            done(null, null, value);
+            validateUsername(value, function (err) {
+                done(null, err, value);
+            });
         },
         update: function (context, source, error, value, done) {
             $('input', source).val(value);
             done()
+        },
+        render: function (ctx, vform, data, value, done) {
+            var el = $('.username', vform.elem);
+            var context = {
+                avatar: value,
+                pending: false
+            };
+            el.on('focusout', 'input', function (e) {
+                var username = $('input', el).val();
+                validateUsername(username, function (err) {
+                    if (err) {
+                        $('.invalid-feedback', el).html(err);
+                        return;
+                    }
+                    utils.loading();
+                    user.find({
+                        query: {
+                            query: {
+                                username: username
+                            }
+                        }
+                    }, function (err, users) {
+                        utils.loaded();
+                        if (err) {
+                            return console.error(err);
+                        }
+                        if (users.length) {
+                            $('.invalid-feedback', el).html('The specific username already exists');
+                            return;
+                        }
+                    });
+                });
+            });
+            el.on('keyup', 'input', function (e) {
+                $('.invalid-feedback', el).empty();
+            });
+            done(null, context);
         }
     },
     email: {

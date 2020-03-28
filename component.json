@@ -16,8 +16,7 @@
         "serandomps/breadcrumb": "master",
         "serandomps/navigation": "master",
         "serandomps/model-contacts": "master",
-        "serandomps/model-locations": "master",
-        "serandomps/upload": "master"
+        "serandomps/model-locations": "master"
     },
     "scripts": [
         "index.js",

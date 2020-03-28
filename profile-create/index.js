@@ -23,21 +23,6 @@ var configs = {
             done();
         }
     },
-    alias: {
-        find: function (context, source, done) {
-            done(null, $('input', source).val());
-        },
-        validate: function (context, data, value, done) {
-            if (!value) {
-                return done(null, 'Please enter an alias for your account.');
-            }
-            done(null, null, value);
-        },
-        update: function (context, source, error, value, done) {
-            $('input', source).val(value);
-            done();
-        }
-    },
     phone: {
         find: function (context, source, done) {
             done(null, $('input', source).val());
