@@ -23,73 +23,6 @@ var configs = {
             done();
         }
     },
-    phone: {
-        find: function (context, source, done) {
-            done(null, $('input', source).val());
-        },
-        validate: function (context, data, value, done) {
-            done(null, null, value);
-        },
-        update: function (context, source, error, value, done) {
-            $('input', source).val(value);
-            done();
-        }
-    },
-    otp: {
-        find: function (context, source, done) {
-            done(null, $('input', source).val());
-        },
-        validate: function (context, data, value, done) {
-            if (data.password && !value) {
-                return done(null, 'Please enter your current password.');
-            }
-            done(null, null, value);
-        },
-        update: function (context, source, error, value, done) {
-            $('input', source).val(value);
-            done()
-        },
-        create: function (context, data, value, done) {
-            if (!value) {
-                return done();
-            }
-            $.ajax({
-                primary: true,
-                method: 'POST',
-                url: utils.resolve('accounts:///apis/v/otps'),
-                dataType: 'json',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    name: 'accounts-update',
-                    password: value
-                }),
-                success: function (data) {
-                    done(null, null, data);
-                },
-                error: function (xhr, status, err) {
-                    if (xhr.status === 401) {
-                        return done(null, 'Old password you entered is incorrect.');
-                    }
-                    done(err);
-                }
-            });
-        }
-    },
-    password: {
-        find: function (context, source, done) {
-            done(null, $('input', source).val());
-        },
-        validate: function (context, data, value, done) {
-            if (data.otp && !value) {
-                return done(null, 'Please enter your new password.');
-            }
-            done(null, null, value);
-        },
-        update: function (context, source, error, value, done) {
-            $('input', source).val(value);
-            done();
-        }
-    },
     location: {
         find: function (context, source, done) {
             context.find(done);
@@ -106,7 +39,8 @@ var configs = {
                 sandbox: $('.location', vform.elem)
             }, {
                 label: 'Location',
-                location: value
+                location: value,
+                details: 'Primary location linked to your user profile.'
             }, function (err, o) {
                 if (err) {
                     return done(err);
@@ -137,7 +71,8 @@ var configs = {
                 sandbox: $('.contact', vform.elem)
             }, {
                 label: 'Contacts',
-                contact: value
+                contact: value,
+                details: 'Primary contacts linked to your user profile.'
             }, function (err, o) {
                 if (err) {
                     return done(err);

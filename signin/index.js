@@ -17,10 +17,10 @@ var configs = {
         },
         validate: function (context, data, value, done) {
             if (!value) {
-                return done(null, 'Please enter your username');
+                return done(null, 'Please enter your username.');
             }
             if (!is.email(value)) {
-                return done(null, 'Please enter a valid email address');
+                return done(null, 'Please enter a valid email address.');
             }
             done(null, null, value);
         },
@@ -35,7 +35,7 @@ var configs = {
         },
         validate: function (context, data, value, done) {
             if (!value) {
-                return done(null, 'Please enter your password');
+                return done(null, 'Please enter your password.');
             }
             done(null, null, value);
         },
@@ -129,7 +129,7 @@ module.exports = function (ctx, container, options, done) {
                                     authenticate(captcha, captchaId, xcaptcha, data.username, data.password, options, function (err) {
                                         utils.loaded();
                                         if (err) {
-                                            $('.signin-error', sandbox).text('Username or the password you entered is invalid');
+                                            $('.signin-error', sandbox).text('Username or the password you entered is invalid.');
                                             signin.attr('disabled', 'disabled');
                                         }
                                     });

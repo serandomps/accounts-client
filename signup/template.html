@@ -15,10 +15,11 @@
                         </label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="username" id="username-{_.container}"
-                                   placeholder="Username" aria-label="Username"
+                                   placeholder="Username" aria-label="Username" aria-describedby="username-help-{_.container}"
                                    required>
                         </div>
                         <div class="invalid-feedback"></div>
+                        <div id="username-help-{_.container}"  class="form-help text-muted">You can use simple letters, numbers & hyphens(-).</div>
                     </div>
 
                     <div class="source email form-group" data-name="email">
@@ -39,10 +40,13 @@
                         </label>
                         <div class="input-group">
                             <input type="password" class="form-control" name="password" id="password-{_.container}"
-                                   placeholder="Password" aria-label="Password"
+                                   placeholder="Password" aria-label="Password" aria-describedby="password-help-{_.container}"
                                    required>
                         </div>
                         <div class="invalid-feedback"></div>
+                        <div id="password-help-{_.container}" class="form-help text-muted">
+                            Use 6 or more characters with a mix of simple letters, capital letters, numbers & symbols.
+                        </div>
                     </div>
 
                     <div class="form-group">

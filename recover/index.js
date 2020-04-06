@@ -16,7 +16,7 @@ var configs = {
                 return done(null, 'Please enter your email');
             }
             if (!is.email(value)) {
-                return done(null, 'Please enter a valid email address');
+                return done(null, 'Please enter a valid email address.');
             }
             done(null, null, value);
         },

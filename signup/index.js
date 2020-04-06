@@ -9,13 +9,6 @@ var redirect = serand.redirect;
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-signup'));
 
-var validateUsername = function (username, done) {
-    if (/^.*(\-)\1{1,}.*$/.test(username) || !/^([a-z0-9]{1}[a-z0-9\-]{0,48}[a-z0-9]{1}|[a-z0-9]){1}$/.test(username)) {
-        return done('Username contains invalid characters or in an invalid format')
-    }
-    done();
-};
-
 var configs = {
     username: {
         find: function (context, source, done) {
@@ -23,9 +16,9 @@ var configs = {
         },
         validate: function (context, data, value, done) {
             if (!value) {
-                return done(null, 'Please enter a name for your account');
+                return done(null, 'Please enter a name for your account.');
             }
-            validateUsername(value, function (err) {
+            validators.username(value, function (err) {
                 done(null, err, value);
             });
         },
@@ -35,15 +28,14 @@ var configs = {
         },
         render: function (ctx, vform, data, value, done) {
             var el = $('.username', vform.elem);
-            var context = {
-                avatar: value,
-                pending: false
-            };
             el.on('focusout', 'input', function (e) {
                 var username = $('input', el).val();
-                validateUsername(username, function (err) {
+                validators.username(username, function (err, error) {
                     if (err) {
-                        $('.invalid-feedback', el).html(err);
+                        return console.error(err);
+                    }
+                    if (error) {
+                        $('.invalid-feedback', el).html(error);
                         return;
                     }
                     utils.loading();
@@ -59,7 +51,7 @@ var configs = {
                             return console.error(err);
                         }
                         if (users.length) {
-                            $('.invalid-feedback', el).html('The specific username already exists');
+                            $('.invalid-feedback', el).html('The specific username already exists.');
                             return;
                         }
                     });
@@ -68,7 +60,7 @@ var configs = {
             el.on('keyup', 'input', function (e) {
                 $('.invalid-feedback', el).empty();
             });
-            done(null, context);
+            done();
         }
     },
     email: {
@@ -77,16 +69,35 @@ var configs = {
         },
         validate: function (context, data, value, done) {
             if (!value) {
-                return done(null, 'Please enter your email');
+                return done(null, 'Please enter your email.');
             }
             if (!is.email(value)) {
-                return done(null, 'Please enter a valid email address');
+                return done(null, 'Please enter a valid email address.');
             }
             done(null, null, value);
         },
         update: function (context, source, error, value, done) {
             $('input', source).val(value);
             done()
+        },
+        render: function (ctx, vform, data, value, done) {
+            var el = $('.email', vform.elem);
+            el.on('focusout', 'input', function (e) {
+                var email = $('input', el).val();
+                validators.email(email, function (err, error) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    if (error) {
+                        $('.invalid-feedback', el).html(error);
+                        return;
+                    }
+                });
+            });
+            el.on('keyup', 'input', function (e) {
+                $('.invalid-feedback', el).empty();
+            });
+            done();
         }
     },
     password: {
@@ -94,7 +105,7 @@ var configs = {
             done(null, $('input', source).val());
         },
         validate: function (context, data, value, done) {
-            validators.password(data.email, value, function (err, error) {
+            validators.password(data.username, data.email, value, function (err, error) {
                 if (err) {
                     return done(err);
                 }
@@ -106,6 +117,27 @@ var configs = {
         },
         update: function (context, source, error, value, done) {
             $('input', source).val(value);
+            done();
+        },
+        render: function (ctx, vform, data, value, done) {
+            var el = $('.password', vform.elem);
+            el.on('focusout', 'input', function (e) {
+                var password = $('input', el).val();
+                var username = $('.username input', vform.elem).val();
+                var email = $('.email input', vform.elem).val();
+                validators.password(username, email, password, function (err, error) {
+                    if (err) {
+                        return console.error(err);
+                    }
+                    if (error) {
+                        $('.invalid-feedback', el).html(error);
+                        return;
+                    }
+                });
+            });
+            el.on('keyup', 'input', function (e) {
+                $('.invalid-feedback', el).empty();
+            });
             done();
         }
     },

@@ -57,7 +57,7 @@ var configs = {
             }
 
             if (value.length < 6) {
-                return done(null, 'Password should at least be 6 characters');
+                return done(null, 'Password should at least be 6 characters.');
             }
             var pass = value.toLowerCase();
             var name;
@@ -71,16 +71,16 @@ var configs = {
                 if (pass !== blocked[name].toLowerCase()) {
                     continue;
                 }
-                return done(null, 'Password should not be equivalent to the ' + name);
+                return done(null, 'Password should not be equivalent to the ' + name + '.');
             }
             if (!/[0-9]/.test(value)) {
-                return done(null, 'Password should contain at least one number');
+                return done(null, 'Password should contain at least one number.');
             }
             if (!/[a-z]/.test(value)) {
-                return done(null, 'Password should contain at one lower case letter');
+                return done(null, 'Password should contain at one lower case letter.');
             }
             if (!/[A-Z]/.test(value)) {
-                return done(null, 'Password should contain at one upper case letter');
+                return done(null, 'Password should contain at one upper case letter.');
             }
             done(null, null, value);
         },
