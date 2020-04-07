@@ -35,6 +35,7 @@
         "reset/index.js",
         "signin/index.js",
         "signup/index.js",
+        "signup-facebook/index.js",
         "token/index.js"
     ],
     "styles": [
@@ -58,6 +59,7 @@
         "reset/template.html",
         "signin/template.html",
         "signup/template.html",
+        "signup-facebook/template.html",
         "token/template.html"
     ],
     "main": "index.js"

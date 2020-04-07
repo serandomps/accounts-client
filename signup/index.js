@@ -146,7 +146,8 @@ var configs = {
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
     var home = options.location || '/';
-    var signup = 'accounts:///signup';
+    var signin = '/signin';
+    var signupFacebook = '/signup-facebook';
     var suffix = '';
     var append = function (suff) {
         suffix += (suffix ? '&' : '?') + suff;
@@ -157,14 +158,16 @@ module.exports = function (ctx, container, options, done) {
     if (options.location) {
         append('redirect_uri=' + options.location);
     }
-    signup += suffix;
-    signup = utils.resolve(signup);
+    signin += suffix;
+    signupFacebook += suffix;
 
     var captchaId;
 
     dust.render('accounts-signup', serand.pack({
         home: home,
-        signup: signup
+        signin: signin,
+        signupFacebook: signupFacebook,
+        error: options.error
     }, container), function (err, out) {
         if (err) {
             return done(err);

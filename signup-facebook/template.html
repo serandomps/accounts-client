@@ -22,44 +22,13 @@
                         <div id="username-help-{_.container}"  class="form-help text-muted">You can use simple letters, numbers & hyphens(-).</div>
                     </div>
 
-                    <div class="source email form-group" data-name="email">
-                        <label for="email-{_.container}" class="title-text font-weight-bolder">
-                            <i class="text-dark fas fa-envelope mr-2"></i>Email
-                        </label>
-                        <div class="input-group">
-                            <input type="email" class="form-control" name="email" id="email-{_.container}"
-                                   placeholder="Email" aria-label="Email"
-                                   required>
-                        </div>
-                        <div class="invalid-feedback"></div>
-                    </div>
-
-                    <div class="source password form-group" data-name="password">
-                        <label for="password-{_.container}" class="title-text font-weight-bolder">
-                            <i class="text-dark fas fa-lock mr-2"></i>Password
-                        </label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" name="password" id="password-{_.container}"
-                                   placeholder="Password" aria-label="Password" aria-describedby="password-help-{_.container}"
-                                   required>
-                        </div>
-                        <div class="invalid-feedback"></div>
-                        <div id="password-help-{_.container}" class="form-help text-muted">
-                            Use 6 or more characters with a mix of simple letters, capital letters, numbers & symbols.
-                        </div>
-                    </div>
-
                     <div class="form-group">
-                        <div class="signup-error invalid-feedback"></div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="captcha" data-size="normal"></div>
+                        <div class="signup-error invalid-feedback">{error}</div>
                     </div>
 
                     <div class="mb-2">
-                        <button type="submit" class="signup btn btn-block btn-primary font-weight-bolder" disabled>
-                            <i class="fas fa-envelope mr-2"></i>Sign up
+                        <button type="submit" class="signup btn btn-block btn-primary font-weight-bolder">
+                            <i class="fab fa-facebook-square mr-2"></i>Sign up
                         </button>
                     </div>
 
@@ -70,8 +39,8 @@
 
                     <!-- Login Buttons -->
                     <div class="login d-flex justify-content-end text-right">
-                        <a class="facebook btn btn-link text-primary" href="{signupFacebook}">
-                            <span class="fab fa-facebook-square fa-2x"></span>
+                        <a class="email btn btn-link text-muted" href="{signupEmail}">
+                            <span class="fas fa-envelope fa-2x"></span>
                         </a>
                         <!--<a class="google btn btn-link mt-0 text-danger" href="#">
                             <span class="fab fa-google fa-2x mr-1"></span>

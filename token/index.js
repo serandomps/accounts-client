@@ -4,6 +4,8 @@ var utils = require('utils');
 var token = require('token');
 var user = require('user');
 
+var redirect = serand.redirect;
+
 dust.loadSource(dust.compile(require('./template'), 'accounts-token'));
 
 module.exports = function (ctx, container, options, done) {
@@ -29,15 +31,19 @@ module.exports = function (ctx, container, options, done) {
 };
 
 var findToken = function (o, options, done) {
+    var data = {
+        redirect_uri: o.location,
+        client_id: o.client,
+        grant_type: o.type,
+        code: options.code
+    };
+    if (o.username) {
+        data.username = o.username;
+    }
     $.ajax({
         method: 'POST',
         url: utils.resolve('accounts:///apis/v/tokens'),
-        data: {
-            redirect_uri: o.location,
-            client_id: o.client,
-            grant_type: o.type,
-            code: options.code
-        },
+        data: data,
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
         success: function (tok) {
@@ -59,6 +65,14 @@ var findToken = function (o, options, done) {
             });
         },
         error: function (xhr, status, err) {
+            if (xhr.status === 401) {
+                return redirect('/signup-facebook', {
+                    client_id: o.client,
+                    redirect_uri: o.location,
+                }, {
+                    error: 'No registered user found for your email. Please sign up here first.'
+                });
+            }
             done(err || status || xhr);
         }
     });

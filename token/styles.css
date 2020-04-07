@@ -1,3 +1,5 @@
-.sandbox-accounts-token .form-control {
-    margin-bottom: 10px;
+.sandbox-accounts-client-token .spinner-border {
+    width: 10em;
+    height: 10em;
 }
+

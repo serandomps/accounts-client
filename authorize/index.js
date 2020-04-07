@@ -85,11 +85,11 @@ module.exports = function (ctx, container, options, done) {
             if (grant) {
                 return redirect('/authorized', null, options);
             }
-            utils.client('serandives', function (err, cid) {
+            utils.client('serandives', function (err, client) {
                 if (err) {
                     return done(err);
                 }
-                if (o.client === cid) {
+                if (o.client === client.id) {
                     authorize(o.client, location, function (err) {
                         if (err) {
                             return console.error(err);

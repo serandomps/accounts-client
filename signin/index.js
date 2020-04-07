@@ -49,7 +49,7 @@ var configs = {
 module.exports = function (ctx, container, options, done) {
     var sandbox = container.sandbox;
     var home = options.location || '/';
-    var signup = 'accounts:///signup';
+    var signupEmail = '/signup';
     var suffix = '';
     var append = function (suff) {
         suffix += (suffix ? '&' : '?') + suff;
@@ -60,14 +60,14 @@ module.exports = function (ctx, container, options, done) {
     if (options.location) {
         append('redirect_uri=' + options.location);
     }
-    signup += suffix;
-    signup = utils.resolve(signup);
+    signupEmail += suffix;
 
     var captchaId;
 
     dust.render('accounts-signin', serand.pack({
         home: home,
-        signup: signup
+        signupEmail: signupEmail,
+        error: options.error
     }, container), function (err, out) {
         if (err) {
             return done(err);

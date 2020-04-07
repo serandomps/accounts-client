@@ -13,4 +13,5 @@ exports.registered = require('./registered');
 exports.reset = require('./reset');
 exports.signin = require('./signin');
 exports.signup = require('./signup');
+exports['signup-facebook'] = require('./signup-facebook');
 exports.token = require('./token');
