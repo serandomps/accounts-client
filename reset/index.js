@@ -12,7 +12,7 @@ var configs = {
             done(null, $('input', source).val());
         },
         validate: function (context, data, value, done) {
-            validators.password(context.email, value, function (err, error) {
+            validators.password(context.username, context.email, value, function (err, error) {
                 if (err) {
                     return done(err);
                 }
@@ -41,7 +41,8 @@ module.exports = function (ctx, container, options, done) {
         var elem = sandbox.append(out);
         var lform = form.create(container.id, elem, configs);
         lform.render({
-            email: options.email
+            email: options.email,
+            username: options.username
         }, {}, function (err) {
             if (err) {
                 return done(err);
