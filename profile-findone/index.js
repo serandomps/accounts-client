@@ -56,7 +56,7 @@ module.exports = function (ctx, container, options, done) {
                 }, {
                     required: true,
                     label: 'Location of the vehicle',
-                    id: usr.location
+                    location: usr._.location
                 }, function (ignored, o) {
                     done(null, {
                         clean: function () {
