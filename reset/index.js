@@ -27,7 +27,10 @@ var configs = {
             done()
         },
         render: function (ctx, form, data, value, done) {
-            done(null, {email: ctx.email});
+            done(null, {
+                email: ctx.email,
+                username: ctx.username
+            });
         }
     }
 };
