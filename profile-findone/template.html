@@ -26,11 +26,8 @@
         </nav>
     </div>
 </div>
-<h1 class="font-weight-bold title text-center text-dark">
-    {?name}{name}{:else}{username}{/name}
-</h1>
 <div class="row mt-4">
-    <div class="col-md">
+    <div class="col-md-2">
         <div class="avatar mb-4">
             <div class="preview text-center">
                 {#_.avatar}
@@ -41,44 +38,15 @@
             </div>
         </div>
     </div>
+    <div class="col-md">
+        <h1 class="font-weight-bold title text-dark mt-2">
+            {?name}{name}{:else}{username}{/name}
+        </h1>
+        <div class="h5 text-dark font-weight-bold mt-1"><i class="fas fa-user mr-2 text-muted"></i>{username}</div>
+        <div class="h5 text-muted mt-1"><i class="fas fa-envelope mr-2 text-muted"></i>{email}</div>
+    </div>
 </div>
-<div class="d-none d-xl-flex row mt-4 text-nowrap">
-    <div class="col-md mb-3"></div>
-    <div class="col-md mb-3">
-        <div class="media">
-            <span class="btn rounded-circle">
-              <span class="fas fa-user fa-fw text-muted"></span>
-            </span>
-            <div class="media-body">
-                <h4 class="h5 text-secondary mb-1 mt-0">Username</h4>
-                <span class="h4 font-weight-bold text-dark">{username}</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md mb-3">
-        <div class="media">
-            <span class="btn rounded-circle">
-              <span class="fas fa-envelope fa-fw text-muted"></span>
-            </span>
-            <div class="media-body">
-                <h4 class="h5 text-secondary mb-1 mt-0">Email</h4>
-                <span class="h4 font-weight-bold text-dark">{email}</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md mb-3">
-        <div class="media">
-            <span class="btn rounded-circle">
-              <span class="fas fa-clock fa-fw text-muted"></span>
-            </span>
-            <div class="media-body">
-                <h4 class="h5 text-secondary mb-1 mt-0">Joined</h4>
-                <span class="h4 font-weight-bold text-dark">{createdAt|ago}</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-md mb-3"></div>
-</div>
+<hr class="divider"/>
 <div class="row mt-4 text-nowrap d-xl-none">
     <div class="col-md mb-3">
         <div class="media">
@@ -116,149 +84,95 @@
     </div>
     {/name}
 </div>
-{?_.contact}
-<hr/>
-{:else}
-{?_.location}
-<hr/>
-{/_.location}
-{/_.contact}
-<div class="row mt-md-2 mt-4">
-    <div class="col-md">
-        {?_.contact}
-        <div class="card border-0">
-            <div class="row no-gutters">
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <h3 class="mb-3">
-                            <!--<i class="fas fa-mobile-alt mr-3 text-muted"></i>-->
-                            <span class="text-dark font-weight-bold">Contacts</span>
-                        </h3>
-                        <div class="model-contacts-info">
-                            {?_.contact.phones}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1"><i class="fas fa-phone fa-fw"></i></div>
-                                {#_.contact.phones}
-                                <div class="p-1">{.}</div>
-                                {/_.contact.phones}
-                            </div>
-                            {/_.contact.phones}
-                            {?_.contact.email}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    <i class="fas fa-envelope fa-fw mr-2"></i>{_.contact.email}
-                                </div>
-                            </div>
-                            {/_.contact.email}
-                            {?_.contact.viber}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    <i class="fab fa-viber fa-fw mr-2"></i>{_.contact.viber}
-                                </div>
-                            </div>
-                            {/_.contact.viber}
-                            {?_.contact.whatsapp}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    <i class="fab fa-whatsapp fa-fw mr-2"></i>{_.contact.whatsapp}
-                                </div>
-                            </div>
-                            {/_.contact.whatsapp}
-                            {?_.contact.messenger}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    <i class="fab fa-facebook-messenger fa-fw mr-2"></i>{_.contact.messenger}
-                                </div>
-                            </div>
-                            {/_.contact.messenger}
-                            {?_.contact.skype}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    <i class="fab fa-skype fa-fw mr-2"></i>{_.contact.skype}
-                                </div>
-                            </div>
-                            {/_.contact.skype}
-                        </div>
-                    </div>
-                </div>
+
+<div class="row mt-5">
+    <div class="col-md-2 text-right"></div>
+    {?contact}
+    <div class="col-md contacts-info">
+        <h2 class="text-dark font-weight-bold mb-3">
+            <i class="fas fa-mobile mr-2 text-muted"></i>Contacts
+        </h2>
+        {?_.contact.phone}
+        <div class="mt-1 mr-4">
+            <i class="fas fa-mobile-alt fa-fw mr-1 text-muted"></i>
+            <a href="tel:{_.contact.phone}" class="text-decoration-none text-muted">{_.contact.phone}</a>
+        </div>
+        {/_.contact.phone}
+        {?_.contact.email}
+        <div class="mt-1 mr-4">
+            <i class="fas fa-envelope fa-fw mr-1 text-muted"></i>{_.contact.email}
+        </div>
+        {/_.contact.email}
+        {?_.contact.messenger}
+        <div class="mt-1 mr-4">
+            <i class="fab fa-facebook-messenger fa-fw mr-1 text-muted"></i>{_.contact.messenger}
+        </div>
+        {/_.contact.messenger}
+        {?_.contact.skype}
+        <div class="mt-1">
+            <i class="fab fa-skype fa-fw mr-1 text-muted"></i>{_.contact.skype}
+        </div>
+        {/_.contact.skype}
+    </div>
+    {/contact}
+    {?location}
+    <div class="col-md location-info">
+        <h2 class="text-dark font-weight-bold mb-3">
+            <i class="fas fa-map-marker mr-2 text-muted"></i>Location
+        </h2>
+        <!--{?_.location.name}
+        <div class="d-flex justify-content-start">
+            <div class="p-1">
+                {_.location.name}
             </div>
         </div>
-        {/_.contact}
-    </div>
-    <div class="col-md">
-        {?_.location}
-        <div class="card border-0">
-            <div class="row no-gutters">
-                <div class="col-md-3 text-center"></div>
-                <div class="col-md-9">
-                    <div class="card-body">
-                        <h3 class="mb-3">
-                            <!--<i class="fas fa-map-marker-alt mr-3 text-muted"></i>-->
-                            <span class="text-dark font-weight-bold">Location</span>
-                        </h3>
-                        <div class="location-info">
-                            <!--{?_.location.name}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    {_.location.name}
-                                </div>
-                            </div>
-                            {/_.location.name}-->
-                            {?_.location.line1}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    {_.location.line1}{?_.location.line2}, {_.location.line2}{/_.location.line2}
-                                </div>
-                            </div>
-                            {/_.location.line1}
-                            {?_.location.city}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    {_.location.city}{?_.location.postal} {_.location.postal}{/_.location.postal}
-                                </div>
-                            </div>
-                            {/_.location.city}
-                            {?_.location.district}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    {_.location.district}
-                                </div>
-                            </div>
-                            {:else}
-                            {?_.location.province}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    {_.location.province}
-                                </div>
-                            </div>
-                            {:else}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    {_.location.state}
-                                </div>
-                            </div>
-                            {/_.location.province}
-                            {/_.location.district}
-                            {?_.location.country}
-                            <div class="d-flex justify-content-start">
-                                <div class="p-1">
-                                    {_.location.country}
-                                </div>
-                            </div>
-                            {/_.location.country}
-                        </div>
-                    </div>
-                </div>
+        {/_.location.name}-->
+        {?_.location.line1}
+        <div class="d-flex justify-content-start">
+            <div class="p-1">
+                {_.location.line1}{?_.location.line2}, {_.location.line2}{/_.location.line2}
             </div>
         </div>
-        {/_.location}
+        {/_.location.line1}
+        {?_.location.city}
+        <div class="d-flex justify-content-start">
+            <div class="p-1">
+                {_.location.city}{?_.location.postal} {_.location.postal}{/_.location.postal}
+            </div>
+        </div>
+        {/_.location.city}
+        {?_.location.district}
+        <div class="d-flex justify-content-start">
+            <div class="p-1">
+                {_.location.district}
+            </div>
+        </div>
+        {:else}
+        {?_.location.province}
+        <div class="d-flex justify-content-start">
+            <div class="p-1">
+                {_.location.province}
+            </div>
+        </div>
+        {:else}
+        <div class="d-flex justify-content-start">
+            <div class="p-1">
+                {_.location.state}
+            </div>
+        </div>
+        {/_.location.province}
+        {/_.location.district}
+        {?_.location.country}
+        <div class="d-flex justify-content-start">
+            <div class="p-1">
+                {_.location.country}
+            </div>
+        </div>
+        {/_.location.country}
     </div>
+    {/location}
 </div>
-<div class="row mt-4">
-    <div class="col-md">
-        {?location}
-        <div class="location"></div>
-        {/location}
-    </div>
-</div>
+
+{?location}
+<div class="location mt-5"></div>
+{/location}
