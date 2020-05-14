@@ -14,14 +14,14 @@ module.exports = function (ctx, container, options, done) {
         if (err) {
             return done(err);
         }
-        var o = serand.store('oauth');
+        var o = serand.persist('oauth');
         findToken(o, options, function (err, token) {
             if (err) {
                 utils.emit('user', 'login error', err);
                 return console.error(err);
             }
             utils.emit('user', 'token', token, o);
-            serand.store('oauth', null);
+            serand.persist('oauth', null);
         });
         sandbox.append(out);
         done(null, function () {

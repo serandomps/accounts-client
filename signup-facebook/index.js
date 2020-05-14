@@ -124,7 +124,7 @@ module.exports = function (ctx, container, options, done) {
                                     });
                                     return;
                                 }
-                                serand.store('oauth', {
+                                serand.persist('oauth', {
                                     type: 'facebook',
                                     client: options.client,
                                     location: options.location,

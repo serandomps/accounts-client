@@ -142,7 +142,7 @@ module.exports = function (ctx, container, options, done) {
             });
             sandbox.on('click', '.facebook', function (e) {
                 utils.loading();
-                serand.store('oauth', {
+                serand.persist('oauth', {
                     type: 'facebook',
                     client: options.client,
                     location: options.location
