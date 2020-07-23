@@ -16,7 +16,7 @@ module.exports = function (ctx, container, options, done) {
         sandbox.append(out);
         $.ajax({
             method: 'POST',
-            url: utils.resolve('accounts:///apis/v/users/' + options.user),
+            url: utils.resolve('apis:///v/users/' + options.user),
             headers: {
                 'X-OTP': options.otp,
                 'X-Action': 'confirm'

@@ -183,7 +183,7 @@ module.exports = function (ctx, container, options, done) {
 var authenticate = function (captcha, captchaId, xcaptcha, username, password, options, done) {
     $.ajax({
         method: 'POST',
-        url: utils.resolve('accounts:///apis/v/tokens'),
+        url: utils.resolve('apis:///v/tokens'),
         data: {
             client_id: options.client,
             redirect_uri: options.location,

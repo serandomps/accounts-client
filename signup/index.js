@@ -227,7 +227,7 @@ module.exports = function (ctx, container, options, done) {
                                         return;
                                     }
                                     $.ajax({
-                                        url: utils.resolve('accounts:///apis/v/users'),
+                                        url: utils.resolve('apis:///v/users'),
                                         method: 'POST',
                                         contentType: 'application/json',
                                         data: JSON.stringify(data),

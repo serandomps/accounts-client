@@ -126,7 +126,7 @@ module.exports = function (ctx, container, options, done) {
 var recovery = function (captcha, captchaId, xcaptcha, email, options, done) {
     $.ajax({
         method: 'POST',
-        url: utils.resolve('accounts:///apis/v/users'),
+        url: utils.resolve('apis:///v/users'),
         data: JSON.stringify({
             query: {
                 email: email

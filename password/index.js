@@ -28,7 +28,7 @@ var configs = {
             $.ajax({
                 primary: true,
                 method: 'POST',
-                url: utils.resolve('accounts:///apis/v/otps'),
+                url: utils.resolve('apis:///v/otps'),
                 dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify({

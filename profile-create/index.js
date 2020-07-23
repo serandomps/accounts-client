@@ -6,7 +6,7 @@ var form = require('form');
 var locations = require('model-locations');
 var contacts = require('model-contacts');
 
-var BINARY_API = utils.resolve('www:///apis/v/binaries');
+var BINARY_API = utils.resolve('apis:///v/binaries');
 
 dust.loadSource(dust.compile(require('./template'), 'accounts-profile-create'));
 

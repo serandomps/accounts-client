@@ -8,7 +8,7 @@ dust.loadSource(dust.compile(require('./template'), 'accounts-authorize'));
 
 var authorize = function (client, location, done) {
     $.ajax({
-        url: utils.resolve('accounts:///apis/v/grants'),
+        url: utils.resolve('apis:///v/grants'),
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -28,7 +28,7 @@ var authorize = function (client, location, done) {
 var findClient = function (id, done) {
     $.ajax({
         method: 'GET',
-        url: utils.resolve('accounts:///apis/v/clients/' + id),
+        url: utils.resolve('apis:///v/clients/' + id),
         dataType: 'json',
         success: function (data) {
             done(null, data);
@@ -49,7 +49,7 @@ var findGrant = function (client, user, done) {
     };
     $.ajax({
         method: 'GET',
-        url: utils.resolve('accounts:///apis/v/grants' + utils.toData(options)),
+        url: utils.resolve('apis:///v/grants' + utils.toData(options)),
         dataType: 'json',
         success: function (data) {
             done(null, data.length ? data[0] : null);

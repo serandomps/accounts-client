@@ -42,7 +42,7 @@ var findToken = function (o, options, done) {
     }
     $.ajax({
         method: 'POST',
-        url: utils.resolve('accounts:///apis/v/tokens'),
+        url: utils.resolve('apis:///v/tokens'),
         data: data,
         contentType: 'application/x-www-form-urlencoded',
         dataType: 'json',
