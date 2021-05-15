@@ -1,6 +1,7 @@
 var dust = require('dust')();
 var serand = require('serand');
 var utils = require('utils');
+var watcher = require('watcher');
 var token = require('token');
 var user = require('user');
 
@@ -17,10 +18,10 @@ module.exports = function (ctx, container, options, done) {
         var o = serand.persist('oauth');
         findToken(o, options, function (err, token) {
             if (err) {
-                utils.emit('user', 'login error', err);
+                watcher.emit('user', 'login error', err);
                 return console.error(err);
             }
-            utils.emit('user', 'token', token, o);
+            watcher.emit('user', 'token', token, o);
             serand.persist('oauth', null);
         });
         sandbox.append(out);

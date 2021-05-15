@@ -1,6 +1,7 @@
 var dust = require('dust')();
 var serand = require('serand');
 var utils = require('utils');
+var watcher = require('watcher');
 var captcha = require('captcha');
 var form = require('form');
 var auth = require('auth');
@@ -200,16 +201,16 @@ var authenticate = function (captcha, captchaId, xcaptcha, username, password, o
             var access = tok.access_token;
             token.findOne(tok.id, access, function (err, tok) {
                 if (err) {
-                    utils.emit('user', 'login error', err);
+                    watcher.emit('user', 'login error', err);
                     return done(err);
                 }
                 user.findOne(tok.user, access, function (err, usr) {
                     if (err) {
-                        utils.emit('user', 'login error', err);
+                        watcher.emit('user', 'login error', err);
                         return done(err);
                     }
                     tok.user = usr;
-                    utils.emit('user', 'token', tok, options);
+                    watcher.emit('user', 'token', tok, options);
                     done()
                 });
             });
@@ -217,7 +218,7 @@ var authenticate = function (captcha, captchaId, xcaptcha, username, password, o
         error: function (xhr, status, err) {
             captcha.reset(captchaId, function () {
                 err = err || status || xhr;
-                utils.emit('user', 'login error', err);
+                watcher.emit('user', 'login error', err);
                 done(err);
             });
         }
